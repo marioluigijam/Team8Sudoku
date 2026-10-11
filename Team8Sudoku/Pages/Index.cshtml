@@ -1,5 +1,4 @@
-﻿@page
-
+@page
 @{
     ViewData["Title"] = "Team 8 Sudoku";
 }
@@ -8,6 +7,7 @@
 
     <main class="game-shell">
 
+        <!-- HEADER -->
         <header class="game-header">
 
             <div>
@@ -23,14 +23,16 @@
             </div>
 
             <div class="iteration-badge">
-                Iteration 1
+                Iteration 2
             </div>
 
         </header>
 
 
+        <!-- TOP GAME INFORMATION -->
         <section class="game-stats">
 
+            <!-- Difficulty -->
             <div class="stat-card">
 
                 <span class="stat-label">
@@ -56,6 +58,41 @@
             </div>
 
 
+            <!-- Theme -->
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    THEME
+                </span>
+
+                <select id="themeSelect">
+
+                    <option value="purple">
+                        Purple
+                    </option>
+
+                    <option value="blue">
+                        Blue
+                    </option>
+
+                    <option value="green">
+                        Green
+                    </option>
+
+                    <option value="pink">
+                        Pink
+                    </option>
+
+                    <option value="dark">
+                        Dark
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Lives -->
             <div class="stat-card">
 
                 <span class="stat-label">
@@ -72,6 +109,24 @@
             </div>
 
 
+            <!-- Mistakes -->
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    MISTAKES
+                </span>
+
+                <div id="mistakes"
+                     class="mistakes">
+
+                    0 / 3
+
+                </div>
+
+            </div>
+
+
+            <!-- Timer -->
             <div class="stat-card">
 
                 <span class="stat-label">
@@ -82,14 +137,35 @@
 
                     <div id="timer"
                          class="timer">
+
                         00:00
+
                     </div>
 
                     <button type="button"
                             id="pauseBtn"
                             class="pause-btn">
+
                         Pause
+
                     </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Best Time -->
+            <div class="stat-card">
+
+                <span class="stat-label">
+                    BEST TIME
+                </span>
+
+                <div id="bestTime"
+                     class="best-time">
+
+                    --:--
 
                 </div>
 
@@ -98,8 +174,11 @@
         </section>
 
 
+        <!-- MAIN GAME AREA -->
         <section class="game-area">
 
+
+            <!-- BOARD SIDE -->
             <div class="board-card">
 
                 <div class="board-top">
@@ -115,6 +194,7 @@
                 </div>
 
 
+                <!-- Progress -->
                 <div class="progress-section">
 
                     <div class="progress-info">
@@ -129,6 +209,7 @@
 
                     </div>
 
+
                     <div class="progress-track">
 
                         <div id="progressBar"
@@ -140,6 +221,7 @@
                 </div>
 
 
+                <!-- Sudoku Board -->
                 <div id="sudoku-board"
                      class="sudoku-board">
                 </div>
@@ -147,6 +229,7 @@
             </div>
 
 
+            <!-- CONTROLS -->
             <aside class="control-panel">
 
                 <div class="panel-title">
@@ -154,19 +237,53 @@
                 </div>
 
 
+                <!-- Number Buttons -->
                 <div class="number-buttons">
 
-                    <button type="button" data-number="1">1</button>
-                    <button type="button" data-number="2">2</button>
-                    <button type="button" data-number="3">3</button>
+                    <button type="button"
+                            data-number="1">
+                        1
+                    </button>
 
-                    <button type="button" data-number="4">4</button>
-                    <button type="button" data-number="5">5</button>
-                    <button type="button" data-number="6">6</button>
+                    <button type="button"
+                            data-number="2">
+                        2
+                    </button>
 
-                    <button type="button" data-number="7">7</button>
-                    <button type="button" data-number="8">8</button>
-                    <button type="button" data-number="9">9</button>
+                    <button type="button"
+                            data-number="3">
+                        3
+                    </button>
+
+                    <button type="button"
+                            data-number="4">
+                        4
+                    </button>
+
+                    <button type="button"
+                            data-number="5">
+                        5
+                    </button>
+
+                    <button type="button"
+                            data-number="6">
+                        6
+                    </button>
+
+                    <button type="button"
+                            data-number="7">
+                        7
+                    </button>
+
+                    <button type="button"
+                            data-number="8">
+                        8
+                    </button>
+
+                    <button type="button"
+                            data-number="9">
+                        9
+                    </button>
 
                 </div>
 
@@ -174,8 +291,11 @@
                 <div class="divider"></div>
 
 
+                <!-- Action Buttons -->
                 <div class="control-buttons">
 
+
+                    <!-- Undo -->
                     <button type="button"
                             id="undoBtn"
                             class="action-btn">
@@ -189,6 +309,7 @@
                     </button>
 
 
+                    <!-- Erase -->
                     <button type="button"
                             id="eraseBtn"
                             class="action-btn">
@@ -201,9 +322,65 @@
 
                     </button>
 
+
+                    <!-- Hint -->
+                    <button type="button"
+                            id="hintBtn"
+                            class="action-btn hint-btn">
+
+                        💡
+
+                        <span>
+                            Hint
+                        </span>
+
+                    </button>
+
+
+                    <!-- Tutorial -->
+                    <button type="button"
+                            id="helpBtn"
+                            class="action-btn">
+
+                        ?
+
+                        <span>
+                            How to Play
+                        </span>
+
+                    </button>
+
                 </div>
 
 
+                <!-- Hint Counter -->
+                <div class="hint-counter">
+
+                    Hints Used:
+
+                    <strong id="hintsUsed">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- Practice Mode -->
+                <label class="practice-toggle">
+
+                    <input type="checkbox"
+                           id="practiceMode" />
+
+                    <span>
+                        Practice Mode
+                        <br />
+                        Infinite Lives
+                    </span>
+
+                </label>
+
+
+                <!-- New Game -->
                 <button type="button"
                         id="newGameBtn"
                         class="new-game-btn">
@@ -213,15 +390,17 @@
                 </button>
 
 
+                <!-- Small Help -->
                 <div class="game-tip">
 
                     <strong>
-                        How to Play
+                        Quick Tip
                     </strong>
 
                     <p>
                         Select an empty square and choose a number.
-                        A wrong answer costs one heart.
+                        Try to finish with fewer mistakes and hints
+                        to beat your best time.
                     </p>
 
                 </div>
@@ -231,14 +410,95 @@
         </section>
 
 
+        <!-- FOOTER -->
         <div class="team-footer">
+
             Team 8 • CSE 3311 • Sudoku Project
+
         </div>
 
     </main>
 
 </div>
 
+
+
+<!-- =====================================
+     HOW TO PLAY / TUTORIAL
+     ===================================== -->
+
+<div id="tutorialOverlay"
+     class="overlay">
+
+    <div class="popup-card tutorial-card">
+
+        <div class="popup-icon">
+            🧩
+        </div>
+
+        <h2>
+            How to Play Sudoku
+        </h2>
+
+        <p>
+            Fill the grid using numbers 1 through 9.
+        </p>
+
+        <p>
+            Every row, column, and 3×3 box must contain
+            each number only once.
+        </p>
+
+        <p>
+            Select an empty square and choose a number
+            from the number pad.
+        </p>
+
+        <p>
+            ❤️ You normally have 3 lives.
+            A wrong answer removes one heart.
+        </p>
+
+        <p>
+            💡 Use Hint if you need help.
+        </p>
+
+        <p>
+            ♾️ Practice Mode gives unlimited lives,
+            but your mistakes are still counted.
+        </p>
+
+        <p>
+            ↶ Undo reverses your last move,
+            and Erase clears a number.
+        </p>
+
+        <p>
+            🎨 You can choose your own color theme.
+        </p>
+
+        <p>
+            🏆 When you finish, you will see your time,
+            mistakes, hints used, and best time.
+        </p>
+
+
+        <button type="button"
+                id="startGameBtn">
+
+            Start Game
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================
+     PAUSE
+     ===================================== -->
 
 <div id="pauseOverlay"
      class="overlay hidden">
@@ -254,7 +514,7 @@
         </h2>
 
         <p>
-            Take your time. Your timer is stopped.
+            Your timer is stopped.
         </p>
 
         <button type="button"
@@ -269,23 +529,104 @@
 </div>
 
 
+
+<!-- =====================================
+     GAME SUMMARY / GAME OVER
+     ===================================== -->
+
 <div id="gameModal"
      class="overlay hidden">
 
-    <div class="popup-card">
+    <div class="popup-card summary-card">
 
         <div id="modalIcon"
              class="popup-icon">
-            🎉
+
+            🏆
+
         </div>
+
 
         <h2 id="modalTitle">
             Puzzle Complete!
         </h2>
 
+
         <p id="modalMessage">
             Great job!
         </p>
+
+
+        <div class="game-summary">
+
+
+            <div class="summary-row">
+
+                <span>
+                    Difficulty
+                </span>
+
+                <strong id="summaryDifficulty">
+                    Medium
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Time
+                </span>
+
+                <strong id="summaryTime">
+                    00:00
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Mistakes
+                </span>
+
+                <strong id="summaryMistakes">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Hints Used
+                </span>
+
+                <strong id="summaryHints">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Best Time
+                </span>
+
+                <strong id="summaryBestTime">
+                    --:--
+                </strong>
+
+            </div>
+
+
+        </div>
+
 
         <button type="button"
                 id="modalNewGame">
