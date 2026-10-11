@@ -1,313 +1,785 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Team 8 Sudoku</title>
 
     <link rel="stylesheet"
           href="Team8Sudoku/wwwroot/css/site.css">
+
 </head>
+
 
 <body>
 
-<div class="sudoku-page">
 
-    <main class="game-shell">
+    <div class="sudoku-page">
 
-        <header class="game-header">
-
-            <div>
-                <div class="brand-badge">
-                    TEAM 8
-                </div>
-
-                <h1>Sudoku</h1>
-
-                <p>
-                    Think smart. Have fun. Complete the grid.
-                </p>
-            </div>
-
-            <div class="iteration-badge">
-                Iteration 1
-            </div>
-
-        </header>
+        <main class="game-shell">
 
 
-        <section class="game-stats">
+            <!-- =========================
+                 HEADER
+                 ========================= -->
 
-            <div class="stat-card">
+            <header class="game-header">
 
-                <span class="stat-label">
-                    DIFFICULTY
-                </span>
+                <div>
 
-                <select id="difficulty">
-
-                    <option value="easy">
-                        Easy
-                    </option>
-
-                    <option value="medium" selected>
-                        Medium
-                    </option>
-
-                    <option value="hard">
-                        Hard
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <span class="stat-label">
-                    LIVES
-                </span>
-
-                <div id="lives"
-                     class="lives">
-
-                    ❤️ ❤️ ❤️
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <span class="stat-label">
-                    TIME
-                </span>
-
-                <div class="timer-row">
-
-                    <div id="timer"
-                         class="timer">
-                        00:00
+                    <div class="brand-badge">
+                        TEAM 8
                     </div>
 
-                    <button type="button"
-                            id="pauseBtn"
-                            class="pause-btn">
-                        Pause
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section class="game-area">
-
-            <div class="board-card">
-
-                <div class="board-top">
-
-                    <span id="difficultyTitle">
-                        Medium Puzzle
-                    </span>
-
-                    <span id="statusText">
-                        Good luck! ✨
-                    </span>
-
-                </div>
-
-
-                <div class="progress-section">
-
-                    <div class="progress-info">
-
-                        <span>
-                            Progress
-                        </span>
-
-                        <span id="progressText">
-                            0 / 0
-                        </span>
-
-                    </div>
-
-                    <div class="progress-track">
-
-                        <div id="progressBar"
-                             class="progress-bar">
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div id="sudoku-board"
-                     class="sudoku-board">
-                </div>
-
-            </div>
-
-
-            <aside class="control-panel">
-
-                <div class="panel-title">
-                    Pick a Number
-                </div>
-
-
-                <div class="number-buttons">
-
-                    <button type="button" data-number="1">1</button>
-                    <button type="button" data-number="2">2</button>
-                    <button type="button" data-number="3">3</button>
-
-                    <button type="button" data-number="4">4</button>
-                    <button type="button" data-number="5">5</button>
-                    <button type="button" data-number="6">6</button>
-
-                    <button type="button" data-number="7">7</button>
-                    <button type="button" data-number="8">8</button>
-                    <button type="button" data-number="9">9</button>
-
-                </div>
-
-
-                <div class="divider"></div>
-
-
-                <div class="control-buttons">
-
-                    <button type="button"
-                            id="undoBtn"
-                            class="action-btn">
-
-                        ↶
-
-                        <span>
-                            Undo
-                        </span>
-
-                    </button>
-
-
-                    <button type="button"
-                            id="eraseBtn"
-                            class="action-btn">
-
-                        ⌫
-
-                        <span>
-                            Erase
-                        </span>
-
-                    </button>
-
-                </div>
-
-
-                <button type="button"
-                        id="newGameBtn"
-                        class="new-game-btn">
-
-                    ✨ New Game
-
-                </button>
-
-
-                <div class="game-tip">
-
-                    <strong>
-                        How to Play
-                    </strong>
+                    <h1>
+                        Sudoku
+                    </h1>
 
                     <p>
-                        Select an empty square and choose a number.
-                        A wrong answer costs one heart.
+                        Think smart. Have fun. Complete the grid.
                     </p>
 
                 </div>
 
-            </aside>
 
-        </section>
+                <div class="iteration-badge">
+                    Iteration 2
+                </div>
 
-
-        <div class="team-footer">
-            Team 8 • CSE 3311 • Sudoku Project
-        </div>
-
-    </main>
-
-</div>
+            </header>
 
 
-<div id="pauseOverlay"
-     class="overlay hidden">
 
-    <div class="popup-card">
+            <!-- =========================
+                 GAME INFORMATION
+                 ========================= -->
 
-        <div class="popup-icon">
-            ⏸️
-        </div>
+            <section class="game-stats">
 
-        <h2>
-            Game Paused
-        </h2>
 
-        <p>
-            Take your time. Your timer is stopped.
-        </p>
+                <!-- Difficulty -->
 
-        <button type="button"
-                id="resumeBtn">
+                <div class="stat-card">
 
-            Resume Game
+                    <span class="stat-label">
+                        DIFFICULTY
+                    </span>
 
-        </button>
+                    <select id="difficulty">
+
+                        <option value="easy">
+                            Easy
+                        </option>
+
+                        <option value="medium"
+                                selected>
+                            Medium
+                        </option>
+
+                        <option value="hard">
+                            Hard
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Theme -->
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        THEME
+                    </span>
+
+                    <select id="themeSelect">
+
+                        <option value="purple">
+                            Purple
+                        </option>
+
+                        <option value="blue">
+                            Blue
+                        </option>
+
+                        <option value="green">
+                            Green
+                        </option>
+
+                        <option value="pink">
+                            Pink
+                        </option>
+
+                        <option value="dark">
+                            Dark
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- Lives -->
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        LIVES
+                    </span>
+
+                    <div id="lives"
+                         class="lives">
+
+                        ❤️ ❤️ ❤️
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Mistakes -->
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        MISTAKES
+                    </span>
+
+                    <div id="mistakes"
+                         class="mistakes">
+
+                        0 / 3
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Timer -->
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        TIME
+                    </span>
+
+                    <div class="timer-row">
+
+                        <div id="timer"
+                             class="timer">
+
+                            00:00
+
+                        </div>
+
+
+                        <button type="button"
+                                id="pauseBtn"
+                                class="pause-btn">
+
+                            Pause
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Best Time -->
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        BEST TIME
+                    </span>
+
+                    <div id="bestTime"
+                         class="best-time">
+
+                        --:--
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 MAIN GAME
+                 ========================= -->
+
+            <section class="game-area">
+
+
+                <!-- BOARD SIDE -->
+
+                <div class="board-card">
+
+
+                    <div class="board-top">
+
+                        <span id="difficultyTitle">
+                            Medium Puzzle
+                        </span>
+
+                        <span id="statusText">
+                            Good luck! ✨
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- Progress -->
+
+                    <div class="progress-section">
+
+                        <div class="progress-info">
+
+                            <span>
+                                Progress
+                            </span>
+
+                            <span id="progressText">
+                                0 / 0
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-track">
+
+                            <div id="progressBar"
+                                 class="progress-bar">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Sudoku Board -->
+
+                    <div id="sudoku-board"
+                         class="sudoku-board">
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =========================
+                     CONTROL PANEL
+                     ========================= -->
+
+                <aside class="control-panel">
+
+
+                    <div class="panel-title">
+                        Pick a Number
+                    </div>
+
+
+
+                    <!-- Number Buttons -->
+
+                    <div class="number-buttons">
+
+                        <button type="button"
+                                data-number="1">
+                            1
+                        </button>
+
+                        <button type="button"
+                                data-number="2">
+                            2
+                        </button>
+
+                        <button type="button"
+                                data-number="3">
+                            3
+                        </button>
+
+
+                        <button type="button"
+                                data-number="4">
+                            4
+                        </button>
+
+                        <button type="button"
+                                data-number="5">
+                            5
+                        </button>
+
+                        <button type="button"
+                                data-number="6">
+                            6
+                        </button>
+
+
+                        <button type="button"
+                                data-number="7">
+                            7
+                        </button>
+
+                        <button type="button"
+                                data-number="8">
+                            8
+                        </button>
+
+                        <button type="button"
+                                data-number="9">
+                            9
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="divider">
+                    </div>
+
+
+
+                    <!-- Action Buttons -->
+
+                    <div class="control-buttons">
+
+
+                        <!-- Undo -->
+
+                        <button type="button"
+                                id="undoBtn"
+                                class="action-btn">
+
+                            ↶
+
+                            <span>
+                                Undo
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- Erase -->
+
+                        <button type="button"
+                                id="eraseBtn"
+                                class="action-btn">
+
+                            ⌫
+
+                            <span>
+                                Erase
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- Hint -->
+
+                        <button type="button"
+                                id="hintBtn"
+                                class="action-btn hint-btn">
+
+                            💡
+
+                            <span>
+                                Hint
+                            </span>
+
+                        </button>
+
+
+
+                        <!-- How to Play -->
+
+                        <button type="button"
+                                id="helpBtn"
+                                class="action-btn">
+
+                            ?
+
+                            <span>
+                                How to Play
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!-- Hint Counter -->
+
+                    <div class="hint-counter">
+
+                        Hints Used:
+
+                        <strong id="hintsUsed">
+                            0
+                        </strong>
+
+                    </div>
+
+
+
+                    <!-- Practice Mode -->
+
+                    <label class="practice-toggle">
+
+                        <input type="checkbox"
+                               id="practiceMode">
+
+                        <span>
+
+                            Practice Mode
+
+                            <br>
+
+                            Infinite Lives
+
+                        </span>
+
+                    </label>
+
+
+
+                    <!-- New Game -->
+
+                    <button type="button"
+                            id="newGameBtn"
+                            class="new-game-btn">
+
+                        ✨ New Game
+
+                    </button>
+
+
+
+                    <!-- Quick Tip -->
+
+                    <div class="game-tip">
+
+                        <strong>
+                            Quick Tip
+                        </strong>
+
+                        <p>
+                            Select an empty square and choose a number.
+                            Try to finish with fewer mistakes and fewer hints
+                            to beat your best time.
+                        </p>
+
+                    </div>
+
+
+                </aside>
+
+
+            </section>
+
+
+
+            <!-- =========================
+                 FOOTER
+                 ========================= -->
+
+            <div class="team-footer">
+
+                Team 8 • CSE 3311 • Sudoku Project
+
+            </div>
+
+
+        </main>
 
     </div>
 
-</div>
 
 
-<div id="gameModal"
-     class="overlay hidden">
+    <!-- =====================================================
+         HOW TO PLAY TUTORIAL
+         ===================================================== -->
 
-    <div class="popup-card">
+    <div id="tutorialOverlay"
+         class="overlay">
 
-        <div id="modalIcon"
-             class="popup-icon">
-            🎉
+        <div class="popup-card tutorial-card">
+
+
+            <div class="popup-icon">
+                🧩
+            </div>
+
+
+            <h2>
+                How to Play Sudoku
+            </h2>
+
+
+            <p>
+                Fill the grid using numbers 1 through 9.
+            </p>
+
+
+            <p>
+                Every row, column, and 3×3 box must contain
+                each number only once.
+            </p>
+
+
+            <p>
+                Select an empty square and choose a number
+                from the number pad.
+            </p>
+
+
+            <p>
+                ❤️ You normally have 3 lives.
+                A wrong answer removes one heart.
+            </p>
+
+
+            <p>
+                💡 Use Hint if you need help.
+            </p>
+
+
+            <p>
+                ♾️ Practice Mode gives unlimited lives,
+                but your mistakes are still counted.
+            </p>
+
+
+            <p>
+                ↶ Undo reverses your last move,
+                and Erase clears a number.
+            </p>
+
+
+            <p>
+                🎨 You can choose your own color theme.
+            </p>
+
+
+            <p>
+                🏆 When you finish, you will see your time,
+                mistakes, hints used, and best time.
+            </p>
+
+
+            <button type="button"
+                    id="startGameBtn">
+
+                Start Game
+
+            </button>
+
+
         </div>
-
-        <h2 id="modalTitle">
-            Puzzle Complete!
-        </h2>
-
-        <p id="modalMessage">
-            Great job!
-        </p>
-
-        <button type="button"
-                id="modalNewGame">
-
-            Play Again
-
-        </button>
 
     </div>
 
-</div>
 
 
-<script src="Team8Sudoku/wwwroot/js/site.js"></script>
+    <!-- =====================================================
+         PAUSE POPUP
+         ===================================================== -->
+
+    <div id="pauseOverlay"
+         class="overlay hidden">
+
+        <div class="popup-card">
+
+
+            <div class="popup-icon">
+                ⏸️
+            </div>
+
+
+            <h2>
+                Game Paused
+            </h2>
+
+
+            <p>
+                Your timer is stopped.
+            </p>
+
+
+            <button type="button"
+                    id="resumeBtn">
+
+                Resume Game
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         GAME RESULT / SUMMARY
+         ===================================================== -->
+
+    <div id="gameModal"
+         class="overlay hidden">
+
+        <div class="popup-card summary-card">
+
+
+            <div id="modalIcon"
+                 class="popup-icon">
+
+                🏆
+
+            </div>
+
+
+            <h2 id="modalTitle">
+                Puzzle Complete!
+            </h2>
+
+
+            <p id="modalMessage">
+                Great job!
+            </p>
+
+
+
+            <div class="game-summary">
+
+
+                <!-- Difficulty -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Difficulty
+                    </span>
+
+                    <strong id="summaryDifficulty">
+                        Medium
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Time -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Time
+                    </span>
+
+                    <strong id="summaryTime">
+                        00:00
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Mistakes -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Mistakes
+                    </span>
+
+                    <strong id="summaryMistakes">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Hints -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Hints Used
+                    </span>
+
+                    <strong id="summaryHints">
+                        0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- Best Time -->
+
+                <div class="summary-row">
+
+                    <span>
+                        Best Time
+                    </span>
+
+                    <strong id="summaryBestTime">
+                        --:--
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <button type="button"
+                    id="modalNewGame">
+
+                Play Again
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         IMPORTANT:
+         This connects GitHub Pages to your current site.js
+         ===================================================== -->
+
+    <script src="Team8Sudoku/wwwroot/js/site.js"></script>
+
 
 </body>
+
 </html>
