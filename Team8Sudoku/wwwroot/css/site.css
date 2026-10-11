@@ -1,691 +1,2180 @@
+/* =========================================================
+   TEAM 8 SUDOKU
+   ITERATION 1 + ITERATION 2
+   ========================================================= */
+
+
+/* =========================================================
+   DEFAULT VARIABLES
+   ========================================================= */
+
 :root {
+
     --accent: #7857ff;
+
     --secondary: #4ecdf4;
+
     --soft: #eeeaff;
+
+    --page-one: #efeaff;
+
+    --page-two: #eaf9ff;
+
+    --page-three: #fff0f7;
+
     --text: #292842;
+
     --muted: #777991;
+
     --line: #d9dbea;
+
+    --card: #ffffff;
+
+    --cell: #ffffff;
+
+    --fixed: #f7f7fb;
+
 }
 
-* {
-    box-sizing: border-box;
+
+
+/* =========================================================
+   PURPLE THEME
+   ========================================================= */
+
+body.theme-purple {
+
+    --accent: #7857ff;
+
+    --secondary: #4ecdf4;
+
+    --soft: #eeeaff;
+
+    --page-one: #efeaff;
+
+    --page-two: #eaf9ff;
+
+    --page-three: #fff0f7;
+
+    --text: #292842;
+
+    --muted: #777991;
+
+    --line: #d9dbea;
+
+    --card: #ffffff;
+
+    --cell: #ffffff;
+
+    --fixed: #f7f7fb;
+
 }
+
+
+
+/* =========================================================
+   BLUE THEME
+   ========================================================= */
+
+body.theme-blue {
+
+    --accent: #2374e1;
+
+    --secondary: #47c5ff;
+
+    --soft: #e5f2ff;
+
+    --page-one: #eaf4ff;
+
+    --page-two: #edfaff;
+
+    --page-three: #f6fbff;
+
+    --text: #24354c;
+
+    --muted: #718096;
+
+    --line: #d7e3ef;
+
+    --card: #ffffff;
+
+    --cell: #ffffff;
+
+    --fixed: #f3f8fc;
+
+}
+
+
+
+/* =========================================================
+   GREEN THEME
+   ========================================================= */
+
+body.theme-green {
+
+    --accent: #20a977;
+
+    --secondary: #57d99e;
+
+    --soft: #e2fff2;
+
+    --page-one: #e8fff5;
+
+    --page-two: #f3fff9;
+
+    --page-three: #ebfff8;
+
+    --text: #254238;
+
+    --muted: #6f8a80;
+
+    --line: #d4e9df;
+
+    --card: #ffffff;
+
+    --cell: #ffffff;
+
+    --fixed: #f4fbf7;
+
+}
+
+
+
+/* =========================================================
+   PINK THEME
+   ========================================================= */
+
+body.theme-pink {
+
+    --accent: #ef5b9c;
+
+    --secondary: #ff9ebf;
+
+    --soft: #ffe8f2;
+
+    --page-one: #ffeaf3;
+
+    --page-two: #fff2f7;
+
+    --page-three: #fff5fa;
+
+    --text: #4d3040;
+
+    --muted: #987687;
+
+    --line: #ecd9e3;
+
+    --card: #ffffff;
+
+    --cell: #ffffff;
+
+    --fixed: #fff7fa;
+
+}
+
+
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+body.theme-dark {
+
+    --accent: #a88bff;
+
+    --secondary: #61d7ff;
+
+    --soft: #38364a;
+
+    --page-one: #181721;
+
+    --page-two: #222131;
+
+    --page-three: #171923;
+
+    --text: #f3f2ff;
+
+    --muted: #aaa8bd;
+
+    --line: #454357;
+
+    --card: #292838;
+
+    --cell: #302f41;
+
+    --fixed: #252432;
+
+}
+
+
+
+/* =========================================================
+   BASIC PAGE
+   ========================================================= */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
 
 html,
 body {
+
     margin: 0;
+
     min-height: 100%;
+
 }
+
 
 body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: linear-gradient( 135deg, #efeaff, #eaf9ff, #fff0f7 );
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--page-one),
+            var(--page-two),
+            var(--page-three)
+        );
+
     color: var(--text);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
 }
 
 
-    /* Difficulty colors */
 
-    body.difficulty-easy {
-        --accent: #20b98b;
-        --secondary: #49cfff;
-        --soft: #e1fff5;
-    }
-
-    body.difficulty-medium {
-        --accent: #7857ff;
-        --secondary: #4ecdf4;
-        --soft: #eeeaff;
-    }
-
-    body.difficulty-hard {
-        --accent: #ff5c8d;
-        --secondary: #ff9f43;
-        --soft: #fff0f5;
-    }
-
-
-/* Main page */
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
 
 .sudoku-page {
+
     min-height: 100vh;
-    padding: 28px 20px 45px;
+
+    padding:
+        28px
+        20px
+        45px;
+
 }
 
 
 .game-shell {
-    max-width: 1150px;
+
+    max-width: 1180px;
+
     margin: auto;
-    padding: 32px 38px;
-    background: rgba( 255, 255, 255, 0.95 );
-    border-radius: 30px;
-    box-shadow: 0 22px 60px rgba( 60, 55, 115, 0.17 );
+
+    padding:
+        32px
+        38px;
+
+    background:
+        var(--card);
+
+    border-radius:
+        30px;
+
+    box-shadow:
+
+        0
+        22px
+        60px
+
+        rgba(
+            60,
+            55,
+            115,
+            0.17
+        );
+
+    transition:
+        0.3s ease;
+
 }
 
 
-/* Header */
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .game-header {
+
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        25px;
+
 }
 
 
 .brand-badge {
-    display: inline-block;
-    padding: 7px 14px;
-    margin-bottom: 8px;
-    border-radius: 30px;
-    background: linear-gradient( 135deg, var(--accent), var(--secondary) );
-    color: white;
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 2px;
+
+    display:
+        inline-block;
+
+    padding:
+        7px
+        14px;
+
+    margin-bottom:
+        8px;
+
+    border-radius:
+        30px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--secondary)
+        );
+
+    color:
+        white;
+
+    font-size:
+        11px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        2px;
+
 }
 
 
 .game-header h1 {
-    margin: 0;
-    font-size: 52px;
-    font-weight: 900;
-    color: var(--accent);
+
+    margin:
+        0;
+
+    font-size:
+        52px;
+
+    font-weight:
+        900;
+
+    color:
+        var(--accent);
+
 }
 
 
 .game-header p {
-    margin: 7px 0 0;
-    color: var(--muted);
+
+    margin:
+        7px
+        0
+        0;
+
+    color:
+        var(--muted);
+
 }
 
 
 .iteration-badge {
-    padding: 11px 17px;
-    border-radius: 14px;
-    background: var(--soft);
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 900;
+
+    padding:
+        11px
+        17px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--soft);
+
+    color:
+        var(--accent);
+
+    font-size:
+        12px;
+
+    font-weight:
+        900;
+
 }
 
 
-/* Stats */
+
+/* =========================================================
+   STAT CARDS
+   ========================================================= */
 
 .game-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    margin-bottom: 25px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            6,
+            1fr
+        );
+
+    gap:
+        11px;
+
+    margin-bottom:
+        25px;
+
 }
 
 
 .stat-card {
-    min-height: 78px;
-    padding: 14px 17px;
-    background: white;
-    border: 1px solid #eeeeF7;
-    border-radius: 20px;
-    box-shadow: 0 8px 22px rgba( 55, 55, 90, 0.07 );
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+    min-height:
+        78px;
+
+    padding:
+        14px;
+
+    background:
+        var(--card);
+
+    border:
+
+        1px
+        solid
+        var(--line);
+
+    border-radius:
+        20px;
+
+    box-shadow:
+
+        0
+        8px
+        22px
+
+        rgba(
+            55,
+            55,
+            90,
+            0.07
+        );
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    justify-content:
+        center;
+
 }
 
 
 .stat-label {
-    margin-bottom: 5px;
-    color: var(--muted);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 1.4px;
+
+    margin-bottom:
+        5px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        9px;
+
+    font-weight:
+        900;
+
+    letter-spacing:
+        1.1px;
+
 }
 
 
-#difficulty {
-    width: 100%;
-    border: 0;
-    outline: 0;
-    background: transparent;
-    color: var(--text);
-    font-size: 17px;
-    font-weight: 800;
-    cursor: pointer;
+
+/* =========================================================
+   SELECTS
+   ========================================================= */
+
+#difficulty,
+#themeSelect {
+
+    width:
+        100%;
+
+    border:
+        0;
+
+    outline:
+        0;
+
+    background:
+        transparent;
+
+    color:
+        var(--text);
+
+    font-size:
+        15px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
 }
 
+
+#difficulty option,
+#themeSelect option {
+
+    color:
+        #292842;
+
+    background:
+        white;
+
+}
+
+
+
+/* =========================================================
+   LIVES
+   ========================================================= */
 
 .lives {
-    display: flex;
-    gap: 6px;
-    font-size: 23px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        4px;
+
+    min-height:
+        29px;
+
+    font-size:
+        19px;
+
 }
 
 
 .lost-heart {
-    opacity: 0.35;
+
+    opacity:
+        0.35;
+
 }
 
+
+
+/* =========================================================
+   MISTAKES
+   ========================================================= */
+
+.mistakes {
+
+    font-size:
+        19px;
+
+    font-weight:
+        900;
+
+}
+
+
+.mistake-warning {
+
+    color:
+        #ef476f;
+
+}
+
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
 
 .timer-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        5px;
+
 }
 
 
-.timer {
-    color: var(--accent);
-    font-size: 21px;
-    font-weight: 900;
+.timer,
+.best-time {
+
+    color:
+        var(--accent);
+
+    font-size:
+        18px;
+
+    font-weight:
+        900;
+
 }
 
 
 .pause-btn {
-    padding: 7px 11px;
-    border: 0;
-    border-radius: 9px;
-    background: var(--soft);
-    color: var(--accent);
-    font-weight: 800;
-    cursor: pointer;
+
+    padding:
+        6px
+        7px;
+
+    border:
+        0;
+
+    border-radius:
+        9px;
+
+    background:
+        var(--soft);
+
+    color:
+        var(--accent);
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
 }
 
 
-    .pause-btn:hover {
-        background: var(--accent);
-        color: white;
-    }
+.pause-btn:hover {
+
+    background:
+        var(--accent);
+
+    color:
+        white;
+
+}
 
 
-/* Game */
+
+/* =========================================================
+   GAME AREA
+   ========================================================= */
 
 .game-area {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
-    gap: 30px;
-    align-items: start;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        minmax(
+            0,
+            1fr
+        )
+
+        280px;
+
+    gap:
+        30px;
+
+    align-items:
+        start;
+
 }
 
 
 .board-card,
 .control-panel {
-    background: white;
-    border: 1px solid #eeeeF7;
-    border-radius: 25px;
-    box-shadow: 0 12px 30px rgba( 50, 50, 90, 0.08 );
+
+    background:
+        var(--card);
+
+    border:
+
+        1px
+        solid
+        var(--line);
+
+    border-radius:
+        25px;
+
+    box-shadow:
+
+        0
+        12px
+        30px
+
+        rgba(
+            50,
+            50,
+            90,
+            0.08
+        );
+
 }
 
 
 .board-card {
-    padding: 22px;
+
+    padding:
+        22px;
+
 }
 
 
+
+/* =========================================================
+   BOARD TOP
+   ========================================================= */
+
 .board-top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    font-weight: 800;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    gap:
+        15px;
+
+    margin-bottom:
+        14px;
+
+    font-weight:
+        800;
+
 }
 
 
 #statusText {
-    color: var(--accent);
+
+    color:
+        var(--accent);
+
+    text-align:
+        right;
+
 }
 
 
-/* Progress */
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
 
 .progress-section {
-    margin-bottom: 16px;
+
+    margin-bottom:
+        16px;
+
 }
 
 
 .progress-info {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 6px;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 700;
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        6px;
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+
+    font-weight:
+        700;
+
 }
 
 
 .progress-track {
-    height: 7px;
-    overflow: hidden;
-    border-radius: 20px;
-    background: #eeeeF6;
+
+    height:
+        7px;
+
+    overflow:
+        hidden;
+
+    border-radius:
+        20px;
+
+    background:
+        var(--soft);
+
 }
 
 
 .progress-bar {
-    width: 0;
-    height: 100%;
-    border-radius: 20px;
-    background: linear-gradient( 90deg, var(--accent), var(--secondary) );
-    transition: width 0.3s ease;
+
+    width:
+        0;
+
+    height:
+        100%;
+
+    border-radius:
+        20px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            var(--accent),
+            var(--secondary)
+        );
+
+    transition:
+        width
+        0.3s
+        ease;
+
 }
 
 
-/* Sudoku */
+
+/* =========================================================
+   SUDOKU BOARD
+   ========================================================= */
 
 .sudoku-board {
-    width: min( 100%, 558px );
-    aspect-ratio: 1 / 1;
-    margin: auto;
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    overflow: hidden;
-    border: 3px solid #393850;
-    border-radius: 13px;
-    background: white;
+
+    width:
+
+        min(
+            100%,
+            558px
+        );
+
+    aspect-ratio:
+        1 / 1;
+
+    margin:
+        auto;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            9,
+            1fr
+        );
+
+    grid-template-rows:
+
+        repeat(
+            9,
+            1fr
+        );
+
+    overflow:
+        hidden;
+
+    border:
+
+        3px
+        solid
+        var(--text);
+
+    border-radius:
+        13px;
+
+    background:
+        var(--cell);
+
 }
 
 
+
+/* =========================================================
+   CELLS
+   ========================================================= */
+
 .sudoku-cell {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--line);
-    font-size: clamp( 18px, 3vw, 27px );
-    font-weight: 750;
-    color: #35344f;
-    user-select: none;
-    transition: 0.16s ease;
+
+    position:
+        relative;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    border:
+
+        1px
+        solid
+        var(--line);
+
+    font-size:
+
+        clamp(
+            18px,
+            3vw,
+            27px
+        );
+
+    font-weight:
+        750;
+
+    color:
+        var(--text);
+
+    background:
+        var(--cell);
+
+    user-select:
+        none;
+
+    transition:
+        0.16s ease;
+
 }
 
 
 .fixed-cell {
-    background: #f7f7fb;
-    font-weight: 900;
+
+    background:
+        var(--fixed);
+
+    font-weight:
+        900;
+
 }
 
 
 .editable-cell {
-    background: white;
-    cursor: pointer;
+
+    cursor:
+        pointer;
+
 }
 
 
-    .editable-cell:hover {
-        background: var(--soft);
-    }
+.editable-cell:hover {
+
+    background:
+        var(--soft);
+
+}
 
 
 .related-cell {
-    background: #f7f6ff !important;
+
+    background:
+
+        var(--soft)
+        !important;
+
+    opacity:
+        0.75;
+
 }
 
 
 .selected-cell {
-    position: relative;
-    z-index: 2;
-    background: var(--soft) !important;
-    box-shadow: inset 0 0 0 3px var(--accent);
+
+    z-index:
+        2;
+
+    background:
+
+        var(--soft)
+        !important;
+
+    opacity:
+        1;
+
+    box-shadow:
+
+        inset
+        0
+        0
+        0
+        3px
+        var(--accent);
+
 }
 
 
 .user-number {
-    color: var(--accent);
-    font-weight: 900;
+
+    color:
+        var(--accent);
+
+    font-weight:
+        900;
+
 }
 
 
-/* Thick Sudoku lines */
+
+/* =========================================================
+   THICK 3X3 LINES
+   ========================================================= */
 
 .sudoku-cell:nth-child(9n + 3),
 .sudoku-cell:nth-child(9n + 6) {
-    border-right: 3px solid #393850;
+
+    border-right:
+
+        3px
+        solid
+        var(--text);
+
 }
 
 
 .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
 .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
-    border-bottom: 3px solid #393850;
+
+    border-bottom:
+
+        3px
+        solid
+        var(--text);
+
 }
 
 
-/* Correct */
+
+/* =========================================================
+   CORRECT ANIMATION
+   ========================================================= */
 
 .correct-pop {
-    animation: correctPop 0.35s ease;
+
+    animation:
+
+        correctPop
+        0.35s
+        ease;
+
 }
 
 
 @keyframes correctPop {
 
     50% {
-        transform: scale(1.18);
+
+        transform:
+            scale(
+                1.18
+            );
+
     }
+
 }
 
 
-/* Wrong */
+
+/* =========================================================
+   WRONG ANIMATION
+   ========================================================= */
 
 .wrong-cell {
-    background: #ffd6e2 !important;
-    animation: wrongShake 0.4s ease;
+
+    background:
+
+        #ffd6e2
+        !important;
+
+    animation:
+
+        wrongShake
+        0.4s
+        ease;
+
 }
 
 
 @keyframes wrongShake {
 
     25% {
-        transform: translateX(-5px);
+
+        transform:
+            translateX(
+                -5px
+            );
+
     }
+
 
     50% {
-        transform: translateX(5px);
+
+        transform:
+            translateX(
+                5px
+            );
+
     }
 
+
     75% {
-        transform: translateX(-4px);
+
+        transform:
+            translateX(
+                -4px
+            );
+
     }
+
 }
 
 
-/* Controls */
+
+/* =========================================================
+   CONTROL PANEL
+   ========================================================= */
 
 .control-panel {
-    padding: 22px;
+
+    padding:
+        22px;
+
 }
 
 
 .panel-title {
-    margin-bottom: 15px;
-    font-size: 16px;
-    font-weight: 900;
+
+    margin-bottom:
+        15px;
+
+    font-size:
+        16px;
+
+    font-weight:
+        900;
+
 }
 
+
+
+/* =========================================================
+   NUMBER BUTTONS
+   ========================================================= */
 
 .number-buttons {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:
+        10px;
+
 }
 
 
-    .number-buttons button {
-        aspect-ratio: 1 / 1;
-        border: 0;
-        border-radius: 16px;
-        background: #f1efff;
-        color: #42415c;
-        font-size: 22px;
-        font-weight: 900;
-        cursor: pointer;
-        transition: 0.18s ease;
-    }
+.number-buttons button {
+
+    aspect-ratio:
+        1 / 1;
+
+    border:
+        0;
+
+    border-radius:
+        16px;
+
+    background:
+        var(--soft);
+
+    color:
+        var(--text);
+
+    font-size:
+        22px;
+
+    font-weight:
+        900;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.18s ease;
+
+}
 
 
-        .number-buttons button:nth-child(3n + 2) {
-            background: #eaf8ff;
-        }
+.number-buttons button:hover {
+
+    transform:
+        translateY(
+            -3px
+        );
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--secondary)
+        );
+
+    color:
+        white;
+
+}
 
 
-        .number-buttons button:nth-child(3n) {
-            background: #fff0f6;
-        }
 
-
-        .number-buttons button:hover {
-            transform: translateY(-3px);
-            background: linear-gradient( 135deg, var(--accent), var(--secondary) );
-            color: white;
-        }
-
+/* =========================================================
+   DIVIDER
+   ========================================================= */
 
 .divider {
-    height: 1px;
-    margin: 20px 0;
-    background: #ececf4;
+
+    height:
+        1px;
+
+    margin:
+        20px
+        0;
+
+    background:
+        var(--line);
+
 }
 
 
+
+/* =========================================================
+   ACTION BUTTONS
+   ========================================================= */
+
 .control-buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+
+    display:
+        grid;
+
+    grid-template-columns:
+
+        1fr
+        1fr;
+
+    gap:
+        10px;
+
 }
 
 
 .action-btn {
-    padding: 13px 8px;
-    border: 0;
-    border-radius: 14px;
-    background: #f4f3fa;
-    color: #4d4c67;
-    font-size: 20px;
-    cursor: pointer;
+
+    min-height:
+        67px;
+
+    padding:
+        13px
+        8px;
+
+    border:
+        0;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--soft);
+
+    color:
+        var(--text);
+
+    font-size:
+        20px;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.18s ease;
+
 }
 
 
-    .action-btn span {
-        display: block;
-        margin-top: 3px;
-        font-size: 11px;
-        font-weight: 800;
-    }
+.action-btn span {
+
+    display:
+        block;
+
+    margin-top:
+        3px;
+
+    font-size:
+        11px;
+
+    font-weight:
+        800;
+
+}
 
 
-    .action-btn:hover {
-        background: var(--soft);
-        color: var(--accent);
-    }
+.action-btn:hover {
 
+    transform:
+        translateY(
+            -2px
+        );
+
+    color:
+        var(--accent);
+
+}
+
+
+
+/* Hint */
+
+.hint-btn {
+
+    background:
+        #fff8d9;
+
+}
+
+
+body.theme-dark .hint-btn {
+
+    background:
+        #49452e;
+
+    color:
+        #ffe783;
+
+}
+
+
+
+/* =========================================================
+   HINT COUNTER
+   ========================================================= */
+
+.hint-counter {
+
+    margin-top:
+        12px;
+
+    padding:
+        10px;
+
+    border-radius:
+        12px;
+
+    background:
+        var(--soft);
+
+    text-align:
+        center;
+
+    color:
+        var(--text);
+
+    font-size:
+        12px;
+
+    font-weight:
+        700;
+
+}
+
+
+
+/* =========================================================
+   PRACTICE MODE
+   ========================================================= */
+
+.practice-toggle {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        9px;
+
+    margin-top:
+        12px;
+
+    padding:
+        12px
+        13px;
+
+    border-radius:
+        14px;
+
+    background:
+        var(--soft);
+
+    color:
+        var(--text);
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    cursor:
+        pointer;
+
+}
+
+
+.practice-toggle input {
+
+    width:
+        18px;
+
+    height:
+        18px;
+
+    accent-color:
+        var(--accent);
+
+    cursor:
+        pointer;
+
+}
+
+
+
+/* =========================================================
+   NEW GAME
+   ========================================================= */
 
 .new-game-btn {
-    width: 100%;
-    margin-top: 13px;
-    padding: 15px;
-    border: 0;
-    border-radius: 15px;
-    background: linear-gradient( 135deg, var(--accent), var(--secondary) );
-    color: white;
-    font-size: 15px;
-    font-weight: 900;
-    cursor: pointer;
+
+    width:
+        100%;
+
+    margin-top:
+        13px;
+
+    padding:
+        15px;
+
+    border:
+        0;
+
+    border-radius:
+        15px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--secondary)
+        );
+
+    color:
+        white;
+
+    font-size:
+        15px;
+
+    font-weight:
+        900;
+
+    cursor:
+        pointer;
+
+    transition:
+        0.18s ease;
+
 }
 
+
+.new-game-btn:hover {
+
+    transform:
+        translateY(
+            -2px
+        );
+
+}
+
+
+
+/* =========================================================
+   QUICK TIP
+   ========================================================= */
 
 .game-tip {
-    margin-top: 18px;
-    padding: 13px 14px;
-    border-radius: 15px;
-    background: var(--soft);
+
+    margin-top:
+        18px;
+
+    padding:
+        13px
+        14px;
+
+    border-radius:
+        15px;
+
+    background:
+        var(--soft);
+
 }
 
 
-    .game-tip strong {
-        color: var(--accent);
-    }
+.game-tip strong {
+
+    color:
+        var(--accent);
+
+}
 
 
-    .game-tip p {
-        margin: 5px 0 0;
-        color: var(--muted);
-        font-size: 11px;
-        line-height: 1.5;
-    }
+.game-tip p {
+
+    margin:
+        5px
+        0
+        0;
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+
+    line-height:
+        1.5;
+
+}
 
 
-/* Custom footer */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .team-footer {
-    margin-top: 28px;
-    text-align: center;
-    color: #9999ac;
-    font-size: 11px;
+
+    margin-top:
+        28px;
+
+    text-align:
+        center;
+
+    color:
+        var(--muted);
+
+    font-size:
+        11px;
+
 }
 
 
-/* Popup */
+
+/* =========================================================
+   POPUP BACKGROUND
+   ========================================================= */
 
 .overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: rgba( 35, 34, 60, 0.5 );
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        100;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        20px;
+
+    background:
+
+        rgba(
+            20,
+            19,
+            35,
+            0.6
+        );
+
 }
 
 
 .hidden {
-    display: none !important;
+
+    display:
+
+        none
+        !important;
+
 }
 
 
+
+/* =========================================================
+   POPUP CARD
+   ========================================================= */
+
 .popup-card {
-    width: min( 390px, 100% );
-    padding: 35px 28px;
-    border-radius: 27px;
-    background: white;
-    text-align: center;
-    box-shadow: 0 30px 80px rgba( 30, 28, 65, 0.3 );
+
+    width:
+
+        min(
+            420px,
+            100%
+        );
+
+    max-height:
+        90vh;
+
+    overflow-y:
+        auto;
+
+    padding:
+        35px
+        28px;
+
+    border-radius:
+        27px;
+
+    background:
+        var(--card);
+
+    color:
+        var(--text);
+
+    text-align:
+        center;
+
+    box-shadow:
+
+        0
+        30px
+        80px
+
+        rgba(
+            30,
+            28,
+            65,
+            0.3
+        );
+
 }
 
 
 .popup-icon {
-    font-size: 55px;
+
+    font-size:
+        55px;
+
 }
 
 
 .popup-card h2 {
-    margin: 10px 0 8px;
+
+    margin:
+        10px
+        0
+        8px;
+
 }
 
 
 .popup-card p {
-    color: var(--muted);
+
+    color:
+        var(--muted);
+
+    line-height:
+        1.5;
+
 }
 
 
 .popup-card button {
-    margin-top: 12px;
-    padding: 13px 27px;
-    border: 0;
-    border-radius: 14px;
-    background: linear-gradient( 135deg, var(--accent), var(--secondary) );
-    color: white;
-    font-weight: 900;
-    cursor: pointer;
+
+    margin-top:
+        16px;
+
+    padding:
+        13px
+        27px;
+
+    border:
+        0;
+
+    border-radius:
+        14px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--secondary)
+        );
+
+    color:
+        white;
+
+    font-weight:
+        900;
+
+    cursor:
+        pointer;
+
 }
 
 
-/* Tablet */
 
-@media (max-width: 900px) {
+/* =========================================================
+   TUTORIAL
+   ========================================================= */
+
+.tutorial-card {
+
+    width:
+
+        min(
+            500px,
+            100%
+        );
+
+}
+
+
+
+/* =========================================================
+   GAME SUMMARY
+   ========================================================= */
+
+.game-summary {
+
+    margin-top:
+        20px;
+
+    padding:
+        15px;
+
+    border-radius:
+        16px;
+
+    background:
+        var(--soft);
+
+}
+
+
+.summary-row {
+
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    padding:
+        9px
+        5px;
+
+    border-bottom:
+
+        1px
+        solid
+        var(--line);
+
+}
+
+
+.summary-row:last-child {
+
+    border-bottom:
+        0;
+
+}
+
+
+.summary-row span {
+
+    color:
+        var(--muted);
+
+    font-size:
+        13px;
+
+}
+
+
+.summary-row strong {
+
+    color:
+        var(--accent);
+
+    font-size:
+        13px;
+
+}
+
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (
+    max-width: 1050px
+) {
+
+    .game-stats {
+
+        grid-template-columns:
+
+            repeat(
+                3,
+                1fr
+            );
+
+    }
+
+}
+
+
+
+@media (
+    max-width: 900px
+) {
 
     .game-area {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
+
     }
 
 
     .control-panel {
-        max-width: 580px;
-        width: 100%;
-        margin: auto;
+
+        max-width:
+            580px;
+
+        width:
+            100%;
+
+        margin:
+            auto;
+
     }
 
 
     .number-buttons {
-        grid-template-columns: repeat(9, 1fr);
+
+        grid-template-columns:
+
+            repeat(
+                9,
+                1fr
+            );
+
     }
+
 }
 
 
-/* Phone */
 
-@media (max-width: 650px) {
+/* =========================================================
+   PHONE
+   ========================================================= */
+
+@media (
+    max-width: 650px
+) {
 
     .sudoku-page {
-        padding: 10px 7px 30px;
+
+        padding:
+            10px
+            7px
+            30px;
+
     }
 
 
     .game-shell {
-        padding: 20px 11px;
-        border-radius: 20px;
+
+        padding:
+            20px
+            11px;
+
+        border-radius:
+            20px;
+
+    }
+
+
+    .game-header {
+
+        align-items:
+            flex-start;
+
+        gap:
+            10px;
+
     }
 
 
     .game-header h1 {
-        font-size: 38px;
+
+        font-size:
+            38px;
+
     }
 
 
     .game-header p {
-        font-size: 12px;
+
+        font-size:
+            12px;
+
     }
 
 
     .iteration-badge {
-        padding: 7px 9px;
-        font-size: 9px;
+
+        padding:
+            7px
+            9px;
+
+        font-size:
+            9px;
+
     }
 
 
     .game-stats {
-        gap: 6px;
+
+        grid-template-columns:
+
+            repeat(
+                2,
+                1fr
+            );
+
+        gap:
+            6px;
+
     }
 
 
     .stat-card {
-        min-height: 65px;
-        padding: 8px;
+
+        min-height:
+            65px;
+
+        padding:
+            8px;
+
     }
 
 
-    #difficulty {
-        font-size: 13px;
+    .stat-label {
+
+        font-size:
+            8px;
+
+    }
+
+
+    #difficulty,
+    #themeSelect {
+
+        font-size:
+            13px;
+
     }
 
 
     .lives {
-        font-size: 16px;
+
+        font-size:
+            16px;
+
     }
 
 
-    .timer {
-        font-size: 15px;
+    .mistakes,
+    .timer,
+    .best-time {
+
+        font-size:
+            15px;
+
     }
 
 
     .pause-btn {
-        padding: 5px 6px;
-        font-size: 10px;
+
+        padding:
+            5px
+            6px;
+
+        font-size:
+            10px;
+
     }
 
 
     .board-card {
-        padding: 9px;
+
+        padding:
+            9px;
+
     }
 
 
     .board-top {
-        font-size: 11px;
+
+        font-size:
+            11px;
+
     }
 
 
     .sudoku-cell {
-        font-size: clamp( 15px, 5vw, 22px );
+
+        font-size:
+
+            clamp(
+                15px,
+                5vw,
+                22px
+            );
+
     }
 
 
     .number-buttons {
-        grid-template-columns: repeat(9, 1fr);
-        gap: 4px;
+
+        grid-template-columns:
+
+            repeat(
+                9,
+                1fr
+            );
+
+        gap:
+            4px;
+
     }
 
 
-        .number-buttons button {
-            font-size: 15px;
-            border-radius: 8px;
-        }
+    .number-buttons button {
+
+        font-size:
+            15px;
+
+        border-radius:
+            8px;
+
+    }
+
+
+    .practice-toggle {
+
+        font-size:
+            10px;
+
+        padding:
+            9px;
+
+    }
+
+
+    .tutorial-card {
+
+        padding:
+            25px
+            18px;
+
+    }
+
+
+    .tutorial-card h2 {
+
+        font-size:
+            21px;
+
+    }
+
+
+    .tutorial-card p {
+
+        font-size:
+            12px;
+
+    }
+
 }
