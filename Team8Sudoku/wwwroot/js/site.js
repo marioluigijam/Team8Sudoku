@@ -2645,9 +2645,15 @@ function closeStartupScreen()
     startupScreen.classList.add("hidden");
 }
 
-function start()
+async function start()
 {
     openTutorial();
+
+    // Wait until the tutorial is closed
+    while (tutorialOpen) {
+        await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
     showStartupScreen();
 }
 
