@@ -174,6 +174,12 @@ const newGameButton =
     );
 
 
+const startGameButton =
+    document.getElementById(
+        "startGameBtn"
+    );
+
+
 const numberButtons =
     document.querySelectorAll(
         ".number-buttons button"
@@ -2564,6 +2570,14 @@ function positiveMessage() {
    ========================================================= */
 
 newGameButton.addEventListener(
+
+    "click",
+
+    startGame
+
+);
+
+startGameButton.addEventListener(
 
     "click",
 
