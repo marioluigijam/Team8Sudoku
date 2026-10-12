@@ -240,6 +240,12 @@ const summaryBestTime =
     );
 
 
+const startupScreen =
+    document.getElementById(
+        "startupScreen"
+    );
+
+
 
 /* =========================================================
    GAME STATE
@@ -273,6 +279,7 @@ let completed = 0;
 
 let tutorialOpen = true;
 
+let gameStarted = false;
 
 
 /* =========================================================
@@ -2343,15 +2350,12 @@ function openTutorial() {
 
 
 function closeTutorial() {
+    tutorialOverlay.classList.add("hidden");
+    tutorialOpen = false;
 
-    tutorialOpen =
-        false;
-
-
-    tutorialOverlay.classList.add(
-        "hidden"
-    );
-
+    if (!gameStarted) {
+        openStartupScreen();
+    }
 }
 
 
@@ -2586,6 +2590,16 @@ difficulty.addEventListener(
     startGame
 
 );
+
+/* =========================================================
+   STARTUP SCREEN
+   ========================================================= */
+
+function openStartupScreen() 
+{
+    startupScreen.classList.remove("hidden");
+    
+}
 
 
 
