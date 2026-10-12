@@ -811,7 +811,6 @@ function makePuzzle(
    ========================================================= */
 
 function startGame() {
-    gameStarted = true;
 
     gameOver =
         false;
@@ -959,6 +958,8 @@ function startGame() {
     resetTimer();
 
     drawBoard();
+
+    showBoard(); // Shows all of the board and surrounding elements. Un-hides the whole element
 
 }
 
@@ -2367,12 +2368,15 @@ function openTutorial() {
 
 
 function closeTutorial() {
-    tutorialOverlay.classList.add("hidden");
-    tutorialOpen = false;
 
-    if (!gameStarted) {
-        openStartupScreen();
-    }
+    tutorialOpen =
+        false;
+
+
+    tutorialOverlay.classList.add(
+        "hidden"
+    );
+
 }
 
 
@@ -2596,14 +2600,11 @@ newGameButton.addEventListener(
 
     "click",
 
-    startGame
-
 );
 
 startGameButton.addEventListener("click", () => {
     closeStartupScreen();
     startGame();
-    showBoard();
 });
     
 
@@ -2634,6 +2635,7 @@ difficulty.addEventListener(
 function openStartupScreen() 
 {
     startupScreen.classList.remove("hidden");
+
     
 }
 
@@ -2642,6 +2644,11 @@ function closeStartupScreen()
     startupScreen.classList.add("hidden");
 }
 
+function start()
+{
+    openTutorial();
+    showStartupScreen();
+}
 
 
 /* =========================================================
