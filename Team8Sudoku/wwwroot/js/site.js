@@ -803,6 +803,8 @@ function makePuzzle(
 
 function startGame() {
 
+    gameStarted = true;
+
     gameOver =
         false;
 
@@ -2577,13 +2579,11 @@ newGameButton.addEventListener(
 
 );
 
-startGameButton.addEventListener(
-
-    "click",
-
-    startGame
-
-);
+startGameButton.addEventListener("click", () => {
+    closeStartupScreen();
+    startGame();
+});
+    
 
 
 
@@ -2613,6 +2613,11 @@ function openStartupScreen()
 {
     startupScreen.classList.remove("hidden");
     
+}
+
+function closeStartupScreen() 
+{
+    startupScreen.classList.add("hidden");
 }
 
 
