@@ -2627,5 +2627,3 @@ function closeStartupScreen()
    ========================================================= */
 
 loadTheme();
-
-startGame();
