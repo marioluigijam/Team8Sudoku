@@ -807,7 +807,6 @@ function makePuzzle(
    ========================================================= */
 
 function startGame() {
-
     gameStarted = true;
 
     gameOver =
