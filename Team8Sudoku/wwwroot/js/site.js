@@ -2618,17 +2618,6 @@ modalNewGame.addEventListener(
     startGame
 
 );
-
-
-
-difficulty.addEventListener(
-
-    "change",
-
-    startGame
-
-);
-
 /* =========================================================
    STARTUP SCREEN
    ========================================================= */
