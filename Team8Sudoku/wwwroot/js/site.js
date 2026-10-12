@@ -162,9 +162,9 @@ const tutorialOverlay =
     );
 
 
-const startGameButton =
+const closeTutorialButton =
     document.getElementById(
-        "startGameBtn"
+        "closeTutorialBtn"
     );
 
 
@@ -2370,7 +2370,7 @@ helpButton.addEventListener(
 
 
 
-startGameButton.addEventListener(
+closeTutorialButton.addEventListener(
 
     "click",
 
