@@ -2599,6 +2599,7 @@ newGameButton.addEventListener(
 startGameButton.addEventListener("click", () => {
     closeStartupScreen();
     startGame();
+    showBoard();
 });
     
 
