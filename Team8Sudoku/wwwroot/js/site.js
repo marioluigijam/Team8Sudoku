@@ -2600,6 +2600,7 @@ newGameButton.addEventListener(
 
     "click",
 
+    start
 );
 
 startGameButton.addEventListener("click", () => {
