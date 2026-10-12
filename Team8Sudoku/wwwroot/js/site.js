@@ -2654,7 +2654,7 @@ async function start()
         await new Promise(resolve => setTimeout(resolve, 100));
     }
 
-    showStartupScreen();
+    openStartupScreen();
 }
 
 
