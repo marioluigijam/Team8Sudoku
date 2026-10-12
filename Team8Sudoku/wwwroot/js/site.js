@@ -52,6 +52,10 @@ const difficulty =
         "difficulty"
     );
 
+const difficultyDisplay =
+    document.getElementById(
+        "difficultyDisplay"
+    );
 
 const themeSelect =
     document.getElementById(
@@ -868,6 +872,7 @@ function startGame() {
         difficulty.value;
 
 
+        difficultyDisplay.textContent = difficulty.options[difficulty.selectedIndex].text;
 
     /* Create new randomized solution */
 
