@@ -2600,7 +2600,7 @@ newGameButton.addEventListener(
 
     "click",
 
-    openStartupScreen();
+    openStartupScreen
 );
 
 startGameButton.addEventListener("click", () => {
