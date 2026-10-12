@@ -2596,7 +2596,7 @@ newGameButton.addEventListener(
 
     "click",
 
-    startGame
+    openStartupScreen();
 
 );
 
