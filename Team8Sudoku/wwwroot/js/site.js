@@ -2600,7 +2600,7 @@ newGameButton.addEventListener(
 
     "click",
 
-    start
+    openStartupScreen();
 );
 
 startGameButton.addEventListener("click", () => {
@@ -2625,8 +2625,6 @@ modalNewGame.addEventListener(
 function openStartupScreen() 
 {
     startupScreen.classList.remove("hidden");
-
-    
 }
 
 function closeStartupScreen() 
