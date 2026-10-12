@@ -31,6 +31,11 @@ const baseSolution = [
 ];
 
 
+const gameShell =
+    document.querySelector(
+        ".game-shell"
+    );
+
 
 /* =========================================================
    DOM ELEMENTS
@@ -2366,6 +2371,18 @@ function closeTutorial() {
     }
 }
 
+
+/* =========================================================
+   Board Toggle
+   ========================================================= */
+
+function hideBoard() {
+    gameShell.classList.add("hidden");
+}
+
+function showBoard() {
+    gameShell.classList.remove("hidden");
+}
 
 
 helpButton.addEventListener(
